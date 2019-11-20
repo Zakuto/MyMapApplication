@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             }
         },3000);
     }
-
+    //calling the MainActivity using Intent.ACTION_MAIN
     public void goToMainActivity(){
         intent = new Intent(Intent.ACTION_MAIN);
         startActivity(intent);
