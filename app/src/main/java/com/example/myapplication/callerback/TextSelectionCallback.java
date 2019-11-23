@@ -4,6 +4,8 @@ package com.example.myapplication.callerback;
 import android.graphics.Color;
 import android.text.Spannable;
 import android.text.style.BackgroundColorSpan;
+//import android.view.ActionMode;
+import androidx.appcompat.view.ActionMode.Callback;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,7 +59,4 @@ public class TextSelectionCallback implements ActionMode.Callback {
     private void colorSelectedText(Spannable span, int start, int end, int color){
         span.setSpan(new BackgroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
-
-
-
 }

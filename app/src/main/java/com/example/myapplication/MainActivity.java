@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     Intent intent;
 
-
     private static final String ACCESS_COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final String ACCESS_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String[] REQUIRED_SDK_PERMISSIONS = new String[]{ACCESS_COARSE_LOCATION,ACCESS_FINE_LOCATION};
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
             requestPermissions(this,REQUIRED_SDK_PERMISSIONS,REQUEST_PERMISSION_LOCATION);
 
-
         }
 
         findViewById(R.id.mapsButton).setOnClickListener(new View.OnClickListener() {
@@ -51,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goToFloatActionMenuActivity();
+            }
+        });
+
+        findViewById(R.id.retrofitButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToRetrofitActivity();
             }
         });
     }
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
         },3000);
     }
+
     //calling the MainActivity using Intent.ACTION_MAIN
     public void goToMainActivity(){
         intent = new Intent(Intent.ACTION_MAIN);
@@ -82,6 +88,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToRetrofitActivity(){
+        intent = new Intent(MainActivity.this,RetrofitActivity.class);
+        startActivity(intent);
+    }
+
+    //permission validation after PERMISSION_GRANTED
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
