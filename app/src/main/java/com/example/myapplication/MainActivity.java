@@ -58,33 +58,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         generateActivityDataList(listOfActivities);
-
-
-        /*findViewById(R.id.mapsButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToMapActivity();
-            }
-        });
-
-        findViewById(R.id.floatingActionButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToFloatActionMenuActivity();
-            }
-        });
-
-        findViewById(R.id.retrofitButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToRetrofitActivity();
-            }
-        });*/
-    }
-
-    private void goToMapActivity(){
-        Intent mapActivityToast = new Intent(this,MapsActivity.class);
-        startActivity(mapActivityToast);
     }
 
     private void requestPermissions(Activity activity, String[] permissionList, int requestCode){
