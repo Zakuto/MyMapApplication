@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -11,9 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-//import android.widget.Toast;
-
-//import com.example.myapplication.callerback.TextSelectionCallback;
 
 public class FloatingActionMenuActivity extends AppCompatActivity {
 
@@ -105,4 +103,6 @@ public class FloatingActionMenuActivity extends AppCompatActivity {
             span.setSpan(new BackgroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     };
+
+
 }

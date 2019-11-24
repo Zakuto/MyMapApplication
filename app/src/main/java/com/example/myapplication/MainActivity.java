@@ -4,21 +4,32 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+
 import android.widget.Toast;
+
+import com.example.myapplication.adapter.ActivityAdapter;
+import com.example.myapplication.model.ListOfActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     Intent intent;
+    RecyclerView recyclerView;
+    ActivityAdapter activityAdapter;
+    List<ListOfActivity> listOfActivities = new ArrayList();
 
     private static final String ACCESS_COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final String ACCESS_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -31,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Resources res = getResources();
+        String [] activityArray = res.getStringArray(R.array.activity_array);
+
+
+        for(int i = 0; i < activityArray.length; i++){
+            listOfActivities.add(new ListOfActivity(activityArray[i]));
+        }
+
         if(ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)){
 
@@ -38,7 +57,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        findViewById(R.id.mapsButton).setOnClickListener(new View.OnClickListener() {
+        generateActivityDataList(listOfActivities);
+
+
+        /*findViewById(R.id.mapsButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToMapActivity();
@@ -57,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 goToRetrofitActivity();
             }
-        });
+        });*/
     }
 
     private void goToMapActivity(){
@@ -83,16 +105,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToFloatActionMenuActivity(){
-        intent = new Intent(MainActivity.this,FloatingActionMenuActivity.class);
-        startActivity(intent);
-    }
-
-    public void goToRetrofitActivity(){
-        intent = new Intent(MainActivity.this,RetrofitActivity.class);
-        startActivity(intent);
-    }
-
     //permission validation after PERMISSION_GRANTED
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -110,6 +122,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    private void generateActivityDataList(List<ListOfActivity> activityList){
+        recyclerView = findViewById(R.id.mainRecyclerView);
+        activityAdapter = new ActivityAdapter(this,activityList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(activityAdapter);
+    }
 
 }

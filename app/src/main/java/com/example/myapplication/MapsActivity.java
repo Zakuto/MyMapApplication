@@ -1,13 +1,9 @@
 package com.example.myapplication;
-
 import androidx.fragment.app.FragmentActivity;
-
-//import android.location.Address;
-//import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-//import android.widget.Toast;
+
 
 import com.example.myapplication.utils.GPSTracker;
 import com.google.android.gms.maps.CameraUpdateFactory;
